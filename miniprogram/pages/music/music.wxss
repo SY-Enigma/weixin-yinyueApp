@@ -1,1 +1,23 @@
 /* pages/music/music.wxss */
+.swiper{
+  height: 350rpx;
+}
+.img{
+  height: 100%;
+  width: 100%;
+}
+.title{
+  margin-top: 10rpx;
+  margin-left: 20rpx;
+}
+.playlist-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin-top: 10rpx;
+}
+.scroll-x{
+  white-space: nowrap;
+  display: flex;
+}
