@@ -10,7 +10,7 @@ interval="3000" duration="1000" class="swiper">
 
 <text class="title">场景歌单</text>
 <view class="playlist-container">
-  <block wx:for="{{playlist}}" wx:key ="id">
+  <block wx:for="{{playlist}}" wx:key ="_id">
    <sy-playlist playlist="{{item}}"></sy-playlist>
   </block>
 </view>

@@ -1,4 +1,8 @@
 // pages/music/music.js
+
+const MAX_LIMIT = 15
+const db = wx.cloud.database()
+
 Page({
 
   /**
@@ -29,32 +33,32 @@ Page({
   "id":"1001",
   "playCount":"150000000",
   "name":"IU翻唱的中文歌 宠粉狂魔❤️",
-  "picUrl":"https://sy-enigma.oss-cn-shanghai.aliyuncs.com/iu/IMG_0784.JPG"
+  "coverImgUrl":"https://sy-enigma.oss-cn-shanghai.aliyuncs.com/iu/IMG_0784.JPG"
 },{
   "id":"1002",
   "playCount":"1570",
   "name":"「IU李知恩」治愈嗓音，听觉盛宴",
-  "picUrl":"https://sy-enigma.oss-cn-shanghai.aliyuncs.com/iu/IMG_0785.JPG"
+  "coverImgUrl":"https://sy-enigma.oss-cn-shanghai.aliyuncs.com/iu/IMG_0785.JPG"
 },{
   "id":"1003",
   "playCount":"106770",
-  "name":"甜美治愈♩李知恩iu",
-  "picUrl":"http://p4.music.126.net/xS_LTZN2wMP_08AaiY-4ZA==/109951164571979631.jpg?param=200y200"
+  "name":"甜美治愈    爱李知恩iu",
+  "coverImgUrl":"http://p4.music.126.net/xS_LTZN2wMP_08AaiY-4ZA==/109951164571979631.jpg?param=200y200"
 },{
   "id":"1004",
   "playCount":"899",
   "name":"甜甜的歌单/“你是心动的具象化”",
-  "picUrl":"http://p3.music.126.net/4scEhs5h_4UzDQli201U2w==/109951165210972742.jpg?param=200y200"
+  "coverImgUrl":"http://p3.music.126.net/4scEhs5h_4UzDQli201U2w==/109951165210972742.jpg?param=200y200"
 },{
   "id":"1005",
   "playCount":"142332",
   "name":"IU丨清新音色的温柔",
-  "picUrl":"https://sy-enigma.oss-cn-shanghai.aliyuncs.com/iu/IMG_0788.JPG"
+  "coverImgUrl":"https://sy-enigma.oss-cn-shanghai.aliyuncs.com/iu/IMG_0788.JPG"
 },{
   "id":"1006",
   "playCount":"110000",
   "name":"IU｜IU的宅家Signal",
-  "picUrl":"https://sy-enigma.oss-cn-shanghai.aliyuncs.com/iu/IMG_1008.JPG"
+  "coverImgUrl":"https://sy-enigma.oss-cn-shanghai.aliyuncs.com/iu/IMG_1008.JPG"
 }
 ]
 
@@ -64,7 +68,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this._getPlayList()
   },
 
   /**
@@ -99,20 +103,44 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    this.setData({
+      playlist: []
+    })
+    this._getPlayList()
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    this._getPlayList()
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function () {},
 
-  }
+
+    _getPlayList() {
+      wx.showLoading({
+        title: '加载中',
+      })
+      wx.cloud.callFunction({
+        name : 'music',
+        data: {
+          start: this.data.playlist.length,
+          count: MAX_LIMIT,
+          $url: 'playlist'
+        }
+      }).then((res) =>{
+        console.log(res)
+        this.setData({
+          playlist : this.data.playlist.concat(res.result.data)
+        })
+        wx.stopPullDownRefresh()
+        wx.hideLoading()
+      })
+    }
+  
 })
