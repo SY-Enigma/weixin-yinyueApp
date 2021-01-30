@@ -19,10 +19,81 @@
   z-index: -2;
   background-color: #222;
 }
-.iconfont{
-  color: #fefefe;
+.player-info{
+text-align: center;
+position: absolute;
+top: 0;
+bottom: 0;
+left: 0;
+right: 0;
 }
 
-.icon-bofang{
+.player-disc{
+  width: 592rpx;
+  height: 592rpx;
+  background: url('https://sy-enigma.oss-cn-shanghai.aliyuncs.com/image/40D7358F-FC59-4E06-91A3-3E579D5F80A2-294-0000004DC32BE834.png') no-repeat center/contain;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 140rpx);
+}
+.player-disc::after{
+  content: '';
+  width: 192rpx;
+  height: 274rpx;
+  position: absolute;
+  top: -150rpx;
+  left: 266rpx;
+  background: url('https://sy-enigma.oss-cn-shanghai.aliyuncs.com/image/needle.png') no-repeat center/contain;
+  transform: rotate(-15deg);
+  transform-origin: 24rpx 10rpx;
+  transition: transform 0.8s ease;
+}
+.playing.player-disc::after{
+  transform: rotate(0deg);
+}
+
+.player-img{
+  width: 368rpx;
+  height: 368rpx;
+  border-radius: 50%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-top: -184rpx;
+  margin-left: -184rpx;
+}
+.zhuan{
+  animation: disc 12s linear infinite;
+}
+@keyframes disc{
+  from{
+    transform: rotate(0deg);
+
+  }
+  to{
+    transform: rotate(360deg);
+  }
+}
+.ting{
+  animation-play-state: paused;
+}
+
+.control{
+  position: absolute;
+  bottom: 8%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+}
+
+.control .iconfont{
+  color: #fefefe;
+}
+.icon-hanhan-01-01, .icon-tubiaozhizuomoban11-01{
+  font-size: 80rpx;
+}
+.icon-bofang, .icon-iconset0482 {
   font-size: 120rpx;
+  margin: 0 50rpx;
 }
