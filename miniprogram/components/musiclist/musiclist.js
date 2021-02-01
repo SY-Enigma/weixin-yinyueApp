@@ -27,7 +27,7 @@ playingId:-1
         playingId: ds.musicid
       })
       wx.navigateTo({
-        url:`../../pages/player/player?musicId=${ds.musicId}&index==${ds.index}` ,
+        url:`../../pages/player/player?musicId=${ds.musicid}&index=${ds.index}` ,
       })
     }
   }

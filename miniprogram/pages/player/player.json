@@ -1,3 +1,6 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "sy-progress-bar" : "/components/progress-bar/pargress-bar"
+  }
+  
 }
