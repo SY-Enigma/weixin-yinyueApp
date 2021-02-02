@@ -1,6 +1,7 @@
 {
   "usingComponents": {
-    "sy-progress-bar" : "/components/progress-bar/pargress-bar"
+    "sy-progress-bar" : "/components/progress-bar/pargress-bar",
+    "sy-lyric" : "/components/lyric/lyric"
   }
   
 }

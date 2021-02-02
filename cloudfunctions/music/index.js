@@ -42,6 +42,13 @@ app.router('musicUrl', async (ctx, next) =>{
 })
 
 
+//根据歌曲id获取歌词
+app.router('lyric', async (ctx, next) =>{
+  const res = await axios.get(`${BASE_URL}/lyric?id=${event.musicId}`)
+  ctx.body = res.data 
+})
+
+
 
   return app.serve()
 }
